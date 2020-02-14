@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Operador MergeSort/Suma Parcial AREP</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <h1 align="center">Operador MergeSort y Sumatoria</h1>
+        <div class="row">
+            <div class="col-4 offset-4">
+                <form id="calcForm" method="post">
+                    <div class="form-group">
+                        <textarea name="numbers" class="form-control" id="numbers" rows="10"
+                                  placeholder="Ingrese los números con los cuales desea realizar las operaciones, ponga un número por línea"></textarea>
+                    </div>
+                    <button id="sumatoria" class="btn btn-outline-primary">Operacion</button>
+                </form>
+                <h3 id="result" style="display: none"></h3>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        $('#sumatoria').click(function (e) {
+            e.preventDefault()
+            var nums = $("#numbers").val()
+            $.ajax({
+                url: "sumatoria",
+                type: $('#calcForm').attr('method'),
+                data: {numbers: nums},
+                success: function (e) {
+                    $("#result").show();
+                    $("#result").text(e)
+                },
+                error: function (e) {
+                    alert("no funciona")
+                }
+            });
+        });
+
+    </script>
+
+</html>
